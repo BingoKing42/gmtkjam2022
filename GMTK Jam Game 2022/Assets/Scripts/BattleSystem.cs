@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOST }
+public enum BattleState { START, PLAYERTURN, DRAFT, ENEMYTURN, WON, LOST }
 
 public class BattleSystem : MonoBehaviour
 {
@@ -19,6 +19,8 @@ public class BattleSystem : MonoBehaviour
     UnitInfo enemyUnitInfo;
 
     public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI d10Button;
+    public TextMeshProUGUI d8Button;
     
     public BattleHUDScript playerHUD;
     public BattleHUDScript enemyHUD;
@@ -54,12 +56,13 @@ public class BattleSystem : MonoBehaviour
     IEnumerator PlayerAttack()
     {
         //damage
-        bool isDead = enemyUnitInfo.TakeDamage(playerUnitInfo.damage);
+        int d10Damage = Random.Range(1, 10);
+        bool isDead = enemyUnitInfo.TakeDamage(d10Damage);
         
         enemyHUD.SetHP(enemyUnitInfo.currentHP);
-        dialogueText.text = "The attack hits!";
+        dialogueText.text = "The attack hits for " + d10Damage + " damage!";
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
 
         //check if dead
         if(isDead)
@@ -69,10 +72,68 @@ public class BattleSystem : MonoBehaviour
             EndBattle();
         } else
         {
-            StartCoroutine(EnemyTurn());
+            PlayerDraft();
         }
 
-        //change state
+    }
+
+    IEnumerator PlayerHeal()
+    {
+        int d8Heal = Random.Range(1, 8);
+        playerUnitInfo.Heal(d8Heal);
+
+        playerHUD.SetHP(playerUnitInfo.currentHP);
+        dialogueText.text = "You healed " + d8Heal + " points of health";
+
+        yield return new WaitForSeconds(4f);
+
+        PlayerDraft();
+    }
+
+    void PlayerDraft()
+    {
+        dialogueText.text = "Add a die to your collection";
+
+        int dieOptions = Random.Range(1, 6);
+
+        StartCoroutine(EnemyTurn());
+    }
+
+    void PlayerTurn()
+    {
+        dialogueText.text = "Choose an action:";
+
+        /*
+        if (playerUnitInfo.d10s == 0)
+        {
+            d10Button.Interactable = false;
+        }
+
+        if (playerUnitInfo.d8s == 0)
+        {
+            d8Button.Interactable = false;
+        }
+        */
+    }
+
+    public void OnD10Button()
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+
+        playerUnitInfo.d10s -= 1;
+
+        state = BattleState.ENEMYTURN;
+        StartCoroutine(PlayerAttack());
+    }
+
+    public void OnD8Button()
+    {
+        if (state != BattleState.PLAYERTURN)
+            return;
+
+        state = BattleState.ENEMYTURN;
+        StartCoroutine(PlayerHeal());
     }
 
     IEnumerator EnemyTurn()
@@ -109,17 +170,4 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    void PlayerTurn()
-    {
-        dialogueText.text = "Choose an action:";
-    }
-
-    public void OnAttackButton()
-    {
-        if (state != BattleState.PLAYERTURN)
-            return;
-
-        state = BattleState.ENEMYTURN;
-        StartCoroutine(PlayerAttack());
-    }
 }
