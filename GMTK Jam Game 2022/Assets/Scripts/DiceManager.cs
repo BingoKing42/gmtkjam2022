@@ -5,7 +5,13 @@ using TMPro;
 
 
 public class DiceManager : MonoBehaviour
-{
+{   
+    public GameObject d4;
+    public GameObject d6;
+    public GameObject d8;
+    public GameObject d10;
+    public GameObject d12;
+    public GameObject d20;
 
     private int d4roll;
     private int d6roll;
@@ -21,11 +27,22 @@ public class DiceManager : MonoBehaviour
     public int[] RollDice()
     {
         d4roll = Random.Range(1, 5);
+        d4.GetComponent<DragDrop>().updateValue(d4roll);
+
         d6roll = Random.Range(1, 7);
+        d6.GetComponent<DragDrop>().updateValue(d6roll);
+
         d8roll = Random.Range(1, 9);
+        d8.GetComponent<DragDrop>().updateValue(d8roll);
+
         d10roll = Random.Range(1, 11);
+        d10.GetComponent<DragDrop>().updateValue(d10roll);
+
         d12roll = Random.Range(1, 13);
+        d12.GetComponent<DragDrop>().updateValue(d12roll);
+
         d20roll = Random.Range(1, 21);
+        d20.GetComponent<DragDrop>().updateValue(d20roll);
 
         return new int[] { d4roll, d6roll, d8roll, d10roll, d12roll, d20roll };
     }
@@ -47,6 +64,8 @@ public class DiceManager : MonoBehaviour
         damage_num = (num1 + num2 + num3) / 3;
         heal_num = 0;
         effects_text = "";
+
+        Debug.Log("1: " + num1 + ", 2: " + num2 + ", 3: " + num3);
 
         if (num1 == num2 && num2 == num3)
         {

@@ -26,6 +26,10 @@ public class BattleSystem : MonoBehaviour
     public GameObject d12_text;
     public GameObject d20_text;
 
+    public TextMeshProUGUI comboNotification;
+    public TextMeshProUGUI enemyStatus;
+    public TextMeshProUGUI playerStatus;
+
     public GameObject dieSlot1;
     public GameObject dieSlot2;
     public GameObject dieSlot3;
@@ -34,9 +38,6 @@ public class BattleSystem : MonoBehaviour
     DieSlot dieSlot3Script;
 
     public Button spellButton;
-
-    public Transform playerBattleStation;
-    public Transform enemyBattleStation;
 
     UnitInfo playerUnitInfo;
     UnitInfo enemyUnitInfo;
@@ -64,13 +65,14 @@ public class BattleSystem : MonoBehaviour
     //Sets up battle, HUD UI
     IEnumerator SetupBattle()
     {
-        GameObject playerGO = Instantiate(playerPrefab, playerBattleStation.transform);
-        playerUnitInfo = playerGO.GetComponent<UnitInfo>();
-
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation.transform);
-        enemyUnitInfo = enemyGO.GetComponent<UnitInfo>();
+        playerUnitInfo = playerPrefab.GetComponent<UnitInfo>();
+        enemyUnitInfo = playerPrefab.GetComponent<UnitInfo>();
 
         diceManagerScript = diceManager.GetComponent<DiceManager>();
+
+        comboNotification.text = "";
+        enemyStatus.text = "";
+        playerStatus.text = "";
 
         //timerScript = timer.GetComponent<Timer>();
 
@@ -120,6 +122,8 @@ public class BattleSystem : MonoBehaviour
         //IDK HOW TO RECEIVE THE VALUES
         diceManagerScript.ScorePicks(dieSlot1Script.slottedDie, dieSlot2Script.slottedDie, dieSlot3Script.slottedDie, out dmg, out heal, out effects);
 
+        comboNotification.text = effects;
+
         //INCLUDE function to return the three dice to their original spots
         dieSlot1Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
         dieSlot2Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
@@ -133,9 +137,17 @@ public class BattleSystem : MonoBehaviour
         dieSlot2Script.isEmpty = true;
         dieSlot3Script.isEmpty = true;
 
+        bool isDead = false;
         //deal damage and heal
-        bool isDead = enemyUnitInfo.TakeDamage(dmg);
-        playerUnitInfo.Heal(heal);
+        if (dmg > 0)
+        {
+            isDead = enemyUnitInfo.TakeDamage(dmg);
+            enemyStatus.text = "-" + dmg + " Health";
+        }
+        if (heal > 0)
+        {
+            playerStatus.text = "+" + heal + " Health";
+        }
 
         //SPACE FOR OTHER, NON DIRECT DAMAGE OR HEAL EFFECTS
         
@@ -144,6 +156,10 @@ public class BattleSystem : MonoBehaviour
         playerHUD.SetHP(playerUnitInfo.currentHP);
 
         yield return new WaitForSeconds(4f);
+
+        comboNotification.text = "";
+        enemyStatus.text = "";
+        playerStatus.text = "";
 
         //check if dead
         if(isDead)
