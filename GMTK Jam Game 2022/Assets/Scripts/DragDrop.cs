@@ -20,7 +20,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        startPos = transform.position;
+        startPos = rectTransform.anchoredPosition;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -45,7 +45,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         if (slotted == false)
         {
             Debug.Log("OnEndDrag: Not slotted");
-            transform.position = startPos;
+            rectTransform.anchoredPosition = startPos;
         }
     }
 
@@ -57,7 +57,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     
     public void ResetPosition()
     {
-        transform.position = startPos;
+        rectTransform.anchoredPosition = startPos;
         slotted = false;
     }
 }
