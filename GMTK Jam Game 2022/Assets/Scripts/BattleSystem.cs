@@ -21,6 +21,11 @@ public class BattleSystem : MonoBehaviour
     public GameObject dieSlot1;
     public GameObject dieSlot2;
     public GameObject dieSlot3;
+    DieSlot dieSlot1Script;
+    DieSlot dieSlot2Script;
+    DieSlot dieSlot3Script;
+
+    public Button spellButton;
 
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
@@ -52,6 +57,10 @@ public class BattleSystem : MonoBehaviour
         diceManagerScript = diceManager.GetComponent<DiceManager>();
 
         timerScript = timer.GetComponent<Timer>();
+
+        dieSlot1Script = dieSlot1.GetComponent<DieSlot>();
+        dieSlot2Script = dieSlot2.GetComponent<DieSlot>();
+        dieSlot3Script = dieSlot3.GetComponent<DieSlot>();
     
         //sets up HUD info (names and health)
         playerHUD.SetHUD(playerUnitInfo);
@@ -79,12 +88,23 @@ public class BattleSystem : MonoBehaviour
     //function to deal damage (using d10)
     IEnumerator PlayerAttack()
     {
-        //damage, random number 1-10
-        int d10Damage = Random.Range(1, 10);
-        bool isDead = enemyUnitInfo.TakeDamage(d10Damage);
+        int dmg;
+        int heal;
+        string effects;
+        //IDK HOW TO RECEIVE THE VALUES
+        diceManagerScript.ScorePicks(dieSlot1Script.slottedDie, dieSlot2Script.slottedDie, dieSlot3Script.slottedDie, out dmg, out heal, out effects);
+
+        //INCLUDE function to return the three dice to their original spots
+
+        //deal damage and heal
+        bool isDead = enemyUnitInfo.TakeDamage(dmg);
+        playerUnitInfo.Heal(heal);
+
+        //SPACE FOR OTHER, NON DIRECT DAMAGE OR HEAL EFFECTS
         
-        //changes enemy HP and updates dialogue text
+        //changes enemy HP 
         enemyHUD.SetHP(enemyUnitInfo.currentHP);
+        playerHUD.SetHP(playerUnitInfo.currentHP);
 
         yield return new WaitForSeconds(4f);
 
@@ -106,24 +126,36 @@ public class BattleSystem : MonoBehaviour
     {
         timerScript.BeginTimer();
 
+        while (dieSlot1Script.isEmpty || dieSlot2Script.isEmpty || dieSlot3Script.isEmpty)
+        {
+            spellButton.enabled = false;
+        }
         //
 
     }
 
     public void OnSpellButton()
     {
+        //if not player turn, do nothing
         if (state != BattleState.PLAYERTURN)
             return;
 
-        
+        //if all slots filled, calcualte damage and effects
+        if (!dieSlot1Script.isEmpty && !dieSlot2Script.isEmpty && !dieSlot3Script.isEmpty)
+        {
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(PlayerAttack());
+        }
     }
+
+    
 
     //enemy does flat damage, changes player HP, checks if game is over
     IEnumerator EnemyTurn()
     {
         yield return new WaitForSeconds(2f);
 
-        int dwagonDamage = Random.Range(1, 6);
+        int dwagonDamage = Random.Range(1, 7);
         bool isDead = playerUnitInfo.TakeDamage(dwagonDamage);
 
         playerHUD.SetHP(playerUnitInfo.currentHP);
