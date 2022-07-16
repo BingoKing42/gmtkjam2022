@@ -6,7 +6,7 @@ using TMPro;
 
 public class DiceManager : MonoBehaviour
 {
-    
+
     private int d4roll;
     private int d6roll;
     private int d8roll;
@@ -30,9 +30,11 @@ public class DiceManager : MonoBehaviour
         return new int[] { d4roll, d6roll, d8roll, d10roll, d12roll, d20roll };
     }
 
-
-    public void ScorePicks(int num1, int num2, int num3, out int damage, out int heal, out string effects)
+    public void ScorePicks(GameObject die1, GameObject die1, GameObject die1, out int damage, out int heal, out string effects)
     {
+        DragDrop die1Info = die1.GetComponent<DragDrop>();
+        DragDrop die2Info = die2.GetComponent<DragDrop>();
+        DragDrop die3Info = die3.GetComponent<DragDrop>();
 
         damage_num = (num1 + num2 + num3) / 3;
         heal_num = 0;
@@ -58,6 +60,18 @@ public class DiceManager : MonoBehaviour
         {
             effects_text += "\nOdds";
             heal_num += 2;
+        }
+
+        if (num1 + 1 == num2 && num2 + 1 == num3)
+        {
+            effects_text += "\nAscending";
+            damage_num == num1+num2+num3;
+        }
+
+        if (num1 + num2 == num3)
+        {
+            effects_text += "\nSummation";
+
         }
 
         damage = damage_num;
