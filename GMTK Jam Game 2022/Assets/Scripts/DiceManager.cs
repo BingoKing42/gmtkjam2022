@@ -40,6 +40,10 @@ public class DiceManager : MonoBehaviour
         int num2 = die2Info.dieValue;
         int num3 = die3Info.dieValue;
 
+        int num1max = die1Info.dieMax;
+        int num2max = die2Info.dieMax;
+        int num3max = die3Info.dieMax;
+
         damage_num = (num1 + num2 + num3) / 3;
         heal_num = 0;
         effects_text = "";
@@ -68,7 +72,7 @@ public class DiceManager : MonoBehaviour
 
         if (num1 + 1 == num2 && num2 + 1 == num3)
         {
-            effects_text += "\nAscending";
+            effects_text += "\nStraight";
             damage_num = num1+num2+num3;
         }
 
@@ -77,6 +81,14 @@ public class DiceManager : MonoBehaviour
             effects_text += "\nSummation";
 
         }
+
+        if (num1 == num1max && num2 == num2max && num3 == num3max)
+        {
+            effects_text += "\nMaximums";
+            damage_num += 3;
+        }
+
+        
 
         damage = damage_num;
         heal = heal_num;

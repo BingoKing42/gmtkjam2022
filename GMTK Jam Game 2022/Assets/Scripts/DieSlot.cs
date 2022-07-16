@@ -16,7 +16,7 @@ public class DieSlot : MonoBehaviour, IDropHandler
         {
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
             slottedDie = eventData.pointerDrag.gameObject;
-            slottedDie.GetComponent<DragDrop>().pickedUp = false;
+            slottedDie.GetComponent<DragDrop>().slotted = true;
             isEmpty = false;
         }
    }
@@ -25,7 +25,7 @@ public class DieSlot : MonoBehaviour, IDropHandler
     {
         if (slottedDie != null)
         {
-            if (slottedDie.GetComponent<DragDrop>().pickedUp == true)
+            if (slottedDie.GetComponent<DragDrop>().slotted == false)
             {
                 isEmpty = true;
             }

@@ -13,12 +13,14 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public int dieValue;
     public int dieMax;
 
-    public bool pickedUp = false;
+    public bool slotted = false;
+    private Vector3 startPos;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        startPos = transform.position;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -39,11 +41,17 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         Debug.Log("OnEndDrag");
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+
+        if (slotted == false)
+        {
+            Debug.Log("OnEndDrag: Not slotted");
+            transform.position = startPos;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("OnPointerDown");
-        pickedUp = true;
+        slotted = false;
     }
 }
