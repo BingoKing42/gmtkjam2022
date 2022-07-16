@@ -10,7 +10,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
 
-    public int DieValue;
+    public int dieValue;
+    public int dieMax;
 
     public bool pickedUp = false;
 
