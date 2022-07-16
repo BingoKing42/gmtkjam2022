@@ -18,6 +18,10 @@ public class BattleSystem : MonoBehaviour
     public Slider timer;
     Timer timerScript;
 
+    public GameObject dieSlot1;
+    public GameObject dieSlot2;
+    public GameObject dieSlot3;
+
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
 
@@ -65,6 +69,7 @@ public class BattleSystem : MonoBehaviour
 
         int[] dieValues = diceManagerScript.RollDice();
 
+        //do dice animation, just text cycling through numbers
         yield return new WaitForSeconds(2f);
 
         state = BattleState.PLAYERTURN;
@@ -100,6 +105,8 @@ public class BattleSystem : MonoBehaviour
     void PlayerTurn()
     {
         timerScript.BeginTimer();
+
+        //
 
     }
 
