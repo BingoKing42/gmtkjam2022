@@ -15,8 +15,9 @@ public class BattleSystem : MonoBehaviour
     public GameObject diceManager;
     DiceManager diceManagerScript;
 
+    /*
     public Slider timer;
-    Timer timerScript;
+    Timer timerScript;*/
 
     public GameObject d4_text;
     public GameObject d6_text;
@@ -49,6 +50,7 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         state = BattleState.START;
+
         //set dice text to their highest values
         d4_text.GetComponent<TextMeshProUGUI>().text = "4";
         d6_text.GetComponent<TextMeshProUGUI>().text = "6";
@@ -70,7 +72,7 @@ public class BattleSystem : MonoBehaviour
 
         diceManagerScript = diceManager.GetComponent<DiceManager>();
 
-        timerScript = timer.GetComponent<Timer>();
+        //timerScript = timer.GetComponent<Timer>();
 
         dieSlot1Script = dieSlot1.GetComponent<DieSlot>();
         dieSlot2Script = dieSlot2.GetComponent<DieSlot>();
@@ -82,7 +84,7 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        state = BattleState.PLAYERTURN;
+        state = BattleState.ROLLING;
         StartCoroutine(RollTheDice());
     }
 
@@ -105,10 +107,11 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         state = BattleState.PLAYERTURN;
+        Debug.Log("finished rolling dice!");
         PlayerTurn();
     }
     
-    //function to deal damage (using d10)
+    //function to deal damage and do effects
     IEnumerator PlayerAttack()
     {
         int dmg;
@@ -147,13 +150,25 @@ public class BattleSystem : MonoBehaviour
     //during player turn, wait until button is clicked. buttons for dice not in the pool are disabled
     void PlayerTurn()
     {
-        timerScript.BeginTimer();
+        Debug.Log("player turn started"); 
+        //timerScript.BeginTimer();
 
-        while (dieSlot1Script.isEmpty || dieSlot2Script.isEmpty || dieSlot3Script.isEmpty)
+        /*
+        while (timerScript.gameTime > 0)
         {
-            spellButton.enabled = false;
-        }
-        //
+            if (dieSlot1Script.isEmpty || dieSlot2Script.isEmpty || dieSlot3Script.isEmpty)
+                spellButton.enabled = false;
+        } 
+
+        if (timerScript.gameTime == 0)
+        {
+            //revert dice back to their spaces
+            //message to say turn was lost
+            
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurn());
+        }*/
+
 
     }
 
@@ -161,11 +176,16 @@ public class BattleSystem : MonoBehaviour
     {
         //if not player turn, do nothing
         if (state != BattleState.PLAYERTURN)
+        {
+            Debug.Log("NOT YOUR TURN");
             return;
+        }
 
         //if all slots filled, calcualte damage and effects
         if (!dieSlot1Script.isEmpty && !dieSlot2Script.isEmpty && !dieSlot3Script.isEmpty)
         {
+            //timerScript.stopTimer = true;
+            Debug.Log("Button Worked!");
             state = BattleState.ENEMYTURN;
             StartCoroutine(PlayerAttack());
         }
