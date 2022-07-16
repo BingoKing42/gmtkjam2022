@@ -13,6 +13,8 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public int dieValue;
     public int dieMax;
 
+    public bool pickedUp = false;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -42,5 +44,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("OnPointerDown");
+        pickedUp = true;
     }
 }
