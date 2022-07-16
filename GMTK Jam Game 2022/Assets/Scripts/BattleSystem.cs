@@ -18,6 +18,13 @@ public class BattleSystem : MonoBehaviour
     public Slider timer;
     Timer timerScript;
 
+    public GameObject d4_text;
+    public GameObject d6_text;
+    public GameObject d8_text;
+    public GameObject d10_text;
+    public GameObject d12_text;
+    public GameObject d20_text;
+
     public GameObject dieSlot1;
     public GameObject dieSlot2;
     public GameObject dieSlot3;
@@ -42,6 +49,13 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         state = BattleState.START;
+        //set dice text to their highest values
+        d4_text.GetComponent<TextMeshProUGUI>().text = "4";
+        d6_text.GetComponent<TextMeshProUGUI>().text = "6";
+        d8_text.GetComponent<TextMeshProUGUI>().text = "8";
+        d10_text.GetComponent<TextMeshProUGUI>().text = "10";
+        d12_text.GetComponent<TextMeshProUGUI>().text = "12";
+        d20_text.GetComponent<TextMeshProUGUI>().text = "20";
         StartCoroutine(SetupBattle());
     }
 
@@ -77,6 +91,15 @@ public class BattleSystem : MonoBehaviour
         //rolls dice and determines numbers on each face
 
         int[] dieValues = diceManagerScript.RollDice();
+
+        Debug.Log("Die values: " + dieValues[0] + " " + dieValues[1] + " " + dieValues[2]);
+
+        d4_text.GetComponent<TextMeshProUGUI>().text = dieValues[0].ToString();
+        d6_text.GetComponent<TextMeshProUGUI>().text = dieValues[1].ToString();
+        d8_text.GetComponent<TextMeshProUGUI>().text = dieValues[2].ToString();
+        d10_text.GetComponent<TextMeshProUGUI>().text = dieValues[3].ToString();
+        d12_text.GetComponent<TextMeshProUGUI>().text = dieValues[4].ToString();
+        d20_text.GetComponent<TextMeshProUGUI>().text = dieValues[5].ToString();
 
         //do dice animation, just text cycling through numbers
         yield return new WaitForSeconds(2f);
