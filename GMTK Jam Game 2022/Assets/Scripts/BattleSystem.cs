@@ -44,10 +44,10 @@ public class BattleSystem : MonoBehaviour
     //Sets up battle, HUD UI, dialogue text, dicepool
     IEnumerator SetupBattle()
     {
-        GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
+        GameObject playerGO = Instantiate(playerPrefab, playerBattleStation.transform);
         playerUnitInfo = playerGO.GetComponent<UnitInfo>();
 
-        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation);
+        GameObject enemyGO = Instantiate(enemyPrefab, enemyBattleStation.transform);
         enemyUnitInfo = enemyGO.GetComponent<UnitInfo>();
 
         //introduction dialogue
