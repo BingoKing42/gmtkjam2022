@@ -5,12 +5,15 @@ using UnityEngine.EventSystems;
 
 public class DieSlot : MonoBehaviour, IDropHandler
 {
+   public bool isEmpty = true;
+
    public void OnDrop(PointerEventData eventData)
    {
         Debug.Log("OnDrop");
         if (eventData.pointerDrag != null)
         {
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+            isEmpty = false;
         }
    }
 
