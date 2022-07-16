@@ -6,12 +6,10 @@ using TMPro;
 
 public class BattleHUDScript : MonoBehaviour
 {
-    public TextMeshProUGUI nameText;
     public Slider hpSlider;
 
     public void SetHUD(UnitInfo unit)
     {
-        nameText.text = unit.unitName;
         hpSlider.maxValue = unit.maxHP;
         hpSlider.value = unit.currentHP;
     }
