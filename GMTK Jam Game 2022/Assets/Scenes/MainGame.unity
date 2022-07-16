@@ -1219,7 +1219,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.8207547, g: 0.08826979, b: 0.08826979, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1233,7 +1233,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 20216998}
   m_FillRect: {fileID: 911857018}
   m_HandleRect: {fileID: 20216997}
@@ -1445,7 +1445,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.8207547, g: 0.08826979, b: 0.08826979, a: 1}
     m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1459,7 +1459,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 1673444451}
   m_FillRect: {fileID: 787263017}
   m_HandleRect: {fileID: 1673444450}
@@ -4357,6 +4357,13 @@ MonoBehaviour:
   playerBattleStation: {fileID: 1099192808}
   enemyBattleStation: {fileID: 840057131}
   dialogueText: {fileID: 1059454912}
+  d4Text: {fileID: 394397264}
+  d8Text: {fileID: 1565561465}
+  d10Text: {fileID: 1096975509}
+  d12Text: {fileID: 354206132}
+  d20Text: {fileID: 1335932678}
+  d10Button: {fileID: 1987848414}
+  d8Button: {fileID: 1334610288}
   playerHUD: {fileID: 585638661}
   enemyHUD: {fileID: 1558738573}
   state: 0
