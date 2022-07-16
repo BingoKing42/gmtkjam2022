@@ -121,6 +121,17 @@ public class BattleSystem : MonoBehaviour
         diceManagerScript.ScorePicks(dieSlot1Script.slottedDie, dieSlot2Script.slottedDie, dieSlot3Script.slottedDie, out dmg, out heal, out effects);
 
         //INCLUDE function to return the three dice to their original spots
+        dieSlot1Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
+        dieSlot2Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
+        dieSlot3Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
+
+        dieSlot1Script.slottedDie = null;
+        dieSlot2Script.slottedDie = null;
+        dieSlot3Script.slottedDie = null;
+
+        dieSlot1Script.isEmpty = true;
+        dieSlot2Script.isEmpty = true;
+        dieSlot3Script.isEmpty = true;
 
         //deal damage and heal
         bool isDead = enemyUnitInfo.TakeDamage(dmg);

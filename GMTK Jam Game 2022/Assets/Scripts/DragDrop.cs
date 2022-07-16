@@ -14,7 +14,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public int dieMax;
 
     public bool slotted = false;
-    private Vector3 startPos;
+    public Vector3 startPos;
 
     private void Awake()
     {
@@ -52,6 +52,12 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
     public void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("OnPointerDown");
+        slotted = false;
+    }
+    
+    public void ResetPosition()
+    {
+        transform.position = startPos;
         slotted = false;
     }
 }
