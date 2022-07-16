@@ -7,7 +7,7 @@ public class DieSlot : MonoBehaviour, IDropHandler
 {
    public bool isEmpty = true;
 
-   public GameObject slottedDie;
+   public GameObject slottedDie = null;
 
    public void OnDrop(PointerEventData eventData)
    {
