@@ -6,38 +6,40 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public Slider timerSlider;
+    /*
+    //public Slider timerSlider;
     public float gameTime;
     public TextMeshProUGUI timerText;
 
-    private bool stopTimer;
+    public bool stopTimer;
 
     public void BeginTimer()
     {
+        Debug.Log("Timer Started");
         stopTimer = false;
         timerSlider.maxValue = gameTime;
         timerSlider.value = gameTime;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        float time = gameTime - Time.time;
-
-        int minutes = Mathf.FloorToInt(time / 60);
-        int seconds = Mathf.FloorToInt(time - minutes * 60f);
-
-        string textTime = string.Format("{0:0}:{1:00}", minutes, seconds);
-
-        if (time <= 0)
+        while (!stopTimer)
         {
-            stopTimer = true;
-        }
+            float time = gameTime - Time.time;
 
-        if (stopTimer == false)
-        {
-            timerText.text = textTime;
-            timerSlider.value = time;
+            int minutes = Mathf.FloorToInt(time / 60);
+            int seconds = Mathf.FloorToInt(time - minutes * 60f);
+
+            string textTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+
+            if (time <= 0)
+            {
+                stopTimer = true;
+            }
+
+            if (stopTimer == false)
+            {
+                timerText.text = textTime;
+                timerSlider.value = time;
+            }
         }
     }
+    */
 }
