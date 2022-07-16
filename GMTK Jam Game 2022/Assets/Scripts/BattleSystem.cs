@@ -65,6 +65,8 @@ public class BattleSystem : MonoBehaviour
 
         int[] dieValues = diceManagerScript.RollDice();
 
+        yield return new WaitForSeconds(2f);
+
         state = BattleState.PLAYERTURN;
         PlayerTurn();
     }

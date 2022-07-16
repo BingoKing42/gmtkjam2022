@@ -2896,6 +2896,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f15dafc1db5f27b479aa65dbb2ad67cb, type: 3}
+--- !u!1 &1450628775 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8949949572397307459, guid: f15dafc1db5f27b479aa65dbb2ad67cb, type: 3}
+  m_PrefabInstance: {fileID: 1450628774}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1558738571
 GameObject:
   m_ObjectHideFlags: 0
@@ -3102,6 +3107,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c46369b316d4a204dbddd80804615728, type: 3}
+--- !u!1 &1665669456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8331536801371209365, guid: c46369b316d4a204dbddd80804615728, type: 3}
+  m_PrefabInstance: {fileID: 1665669455}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1673444449
 GameObject:
   m_ObjectHideFlags: 0
@@ -3693,8 +3703,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2078969731}
-  - component: {fileID: 2078969730}
   - component: {fileID: 2078969732}
+  - component: {fileID: 2078969733}
   m_Layer: 0
   m_Name: BattleSystem
   m_TagString: Untagged
@@ -3702,33 +3712,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2078969730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2078969729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bfab79e17bbf4a4d933dc0154568561, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 8331536801371209365, guid: c46369b316d4a204dbddd80804615728, type: 3}
-  enemyPrefab: {fileID: 8949949572397307459, guid: f15dafc1db5f27b479aa65dbb2ad67cb, type: 3}
-  playerBattleStation: {fileID: 1099192808}
-  enemyBattleStation: {fileID: 840057131}
-  dialogueText: {fileID: 0}
-  d4Text: {fileID: 0}
-  d8Text: {fileID: 0}
-  d10Text: {fileID: 0}
-  d12Text: {fileID: 0}
-  d20Text: {fileID: 0}
-  d10Button: {fileID: 0}
-  d8Button: {fileID: 0}
-  playerHUD: {fileID: 585638661}
-  enemyHUD: {fileID: 1558738573}
-  state: 0
 --- !u!4 &2078969731
 Transform:
   m_ObjectHideFlags: 0
@@ -3759,6 +3742,27 @@ MonoBehaviour:
   timerSlider: {fileID: 1812801217}
   gameTime: 10
   timerText: {fileID: 210672114}
+--- !u!114 &2078969733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2078969729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bfab79e17bbf4a4d933dc0154568561, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 1665669456}
+  enemyPrefab: {fileID: 1450628775}
+  diceManager: {fileID: 380299738}
+  timer: {fileID: 1812801217}
+  playerBattleStation: {fileID: 1099192808}
+  enemyBattleStation: {fileID: 840057131}
+  playerHUD: {fileID: 585638661}
+  enemyHUD: {fileID: 1558738573}
+  state: 0
 --- !u!1001 &799182135590612990
 PrefabInstance:
   m_ObjectHideFlags: 0

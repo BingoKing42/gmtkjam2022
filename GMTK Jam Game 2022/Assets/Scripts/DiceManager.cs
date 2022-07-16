@@ -6,13 +6,7 @@ using TMPro;
 
 public class DiceManager : MonoBehaviour
 {
-    public TextMeshProUGUI d4;
-    public TextMeshProUGUI d6;
-    public TextMeshProUGUI d8;
-    public TextMeshProUGUI d10;
-    public TextMeshProUGUI d12;
-    public TextMeshProUGUI d20;
-
+    
     private int d4roll;
     private int d6roll;
     private int d8roll;
@@ -24,16 +18,6 @@ public class DiceManager : MonoBehaviour
     private int heal_num;
     private string effects_text;
 
-    void Start()
-    {
-        d4.text = "4";
-        d6.text = "6";
-        d8.text = "8";
-        d10.text = "10";
-        d12.text = "12";
-        d20.text = "20";
-    }
-
     public int[] RollDice()
     {
         d4roll = Random.Range(1, 5);
@@ -42,13 +26,6 @@ public class DiceManager : MonoBehaviour
         d10roll = Random.Range(1, 11);
         d12roll = Random.Range(1, 13);
         d20roll = Random.Range(1, 21);
-
-        d4.text = d4roll.ToString();
-        d6.text = d6roll.ToString();
-        d8.text = d8roll.ToString();
-        d10.text = d10roll.ToString();
-        d12.text = d12roll.ToString();
-        d20.text = d20roll.ToString();
 
         return new int[] { d4roll, d6roll, d8roll, d10roll, d12roll, d20roll };
     }
