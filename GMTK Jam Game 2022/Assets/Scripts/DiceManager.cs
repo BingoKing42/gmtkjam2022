@@ -30,11 +30,15 @@ public class DiceManager : MonoBehaviour
         return new int[] { d4roll, d6roll, d8roll, d10roll, d12roll, d20roll };
     }
 
-    public void ScorePicks(GameObject die1, GameObject die1, GameObject die1, out int damage, out int heal, out string effects)
+    public void ScorePicks(GameObject die1, GameObject die2, GameObject die3, out int damage, out int heal, out string effects)
     {
         DragDrop die1Info = die1.GetComponent<DragDrop>();
         DragDrop die2Info = die2.GetComponent<DragDrop>();
         DragDrop die3Info = die3.GetComponent<DragDrop>();
+
+        int num1 = die1Info.dieValue;
+        int num2 = die2Info.dieValue;
+        int num3 = die3Info.dieValue;
 
         damage_num = (num1 + num2 + num3) / 3;
         heal_num = 0;
@@ -65,7 +69,7 @@ public class DiceManager : MonoBehaviour
         if (num1 + 1 == num2 && num2 + 1 == num3)
         {
             effects_text += "\nAscending";
-            damage_num == num1+num2+num3;
+            damage_num = num1+num2+num3;
         }
 
         if (num1 + num2 == num3)
