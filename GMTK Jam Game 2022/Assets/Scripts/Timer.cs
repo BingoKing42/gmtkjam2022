@@ -12,8 +12,7 @@ public class Timer : MonoBehaviour
 
     private bool stopTimer;
 
-    // Start is called before the first frame update
-    void Start()
+    public void BeginTimer()
     {
         stopTimer = false;
         timerSlider.maxValue = gameTime;
