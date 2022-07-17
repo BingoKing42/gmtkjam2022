@@ -171,7 +171,11 @@ public class BattleSystem : MonoBehaviour
             playerStatus.text = "+" + heal + " Health";
         }
 
-        //SPACE FOR OTHER, NON DIRECT DAMAGE OR HEAL EFFECTS
+        if (effects.Contains("Triple"))
+        {
+            state = BattleState.ROLLING;
+            StartCoroutine(RollTheDice());
+        }
         
         //changes enemy HP 
         enemyHUD.SetHP(enemyUnitInfo.currentHP);

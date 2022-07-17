@@ -65,12 +65,10 @@ public class DiceManager : MonoBehaviour
         heal_num = 0;
         effects_text = "";
 
-        Debug.Log("1: " + num1 + ", 2: " + num2 + ", 3: " + num3);
-
         if (num1 == num2 && num2 == num3)
         {
             effects_text = "Triple";
-            damage_num *= 3;
+            //Triples stun the enemy
         }
         else if (num1 == num2 || num2 == num3 || num1 == num3)
         {
@@ -81,12 +79,12 @@ public class DiceManager : MonoBehaviour
         if (num1 % 2 == 0 && num2 % 2 == 0 && num3 % 2 == 0)
         {
             effects_text += "\nEvens";
-            damage_num += 2;
+            damage_num += 4;
         }
         else if (num1 % 2 == 1 && num2 % 2 == 1 && num3 % 2 == 1)
         {
             effects_text += "\nOdds";
-            heal_num += 2;
+            heal_num += 4;
         }
 
         if (num1 + 1 == num2 && num2 + 1 == num3)
@@ -108,7 +106,6 @@ public class DiceManager : MonoBehaviour
         }
 
         
-
         damage = damage_num;
         heal = heal_num;
         effects = effects_text;
