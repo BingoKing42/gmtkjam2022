@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/IntroCutscene.unity
     guid: f239d78464f8c5d438c16d9e7db6f781
   - enabled: 1
+    path: Assets/Scenes/Rules.unity
+    guid: e2f4cd612c1adee468720ca33236540a
+  - enabled: 1
     path: Assets/Scenes/MainGame.unity
     guid: b0241a464da346149a6cbf5d3bbdd21d
+  - enabled: 1
+    path: Assets/Scenes/LoseScreen.unity
+    guid: d2d779a5a961d6d4083c4a6c8bfc92fd
+  - enabled: 1
+    path: Assets/Scenes/WinScreen.unity
+    guid: 32c9e899443e4b54faa340898d259133
   m_configObjects: {}
