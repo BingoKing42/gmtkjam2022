@@ -15,16 +15,19 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
 
     public bool gameEnd;
+    private bool moveOn;
 
     // Start is called before the first frame update
     void Start()
     {
+        moveOn = false;
         sentences = new Queue<string>();
     }
 
     public void StartDialogue (Dialogue dialogue)
     {
         sentences.Clear();
+        moveOn = true;
 
         foreach (string sentence in dialogue.sentences)
         {
@@ -69,10 +72,10 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        if (gameEnd)
+        if (gameEnd && moveOn)
         {
             Application.Quit();
-        } else
+        } else if (moveOn)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             FindObjectOfType<AudioManager>().Play("Pencil");
