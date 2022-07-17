@@ -64,7 +64,7 @@ public class DialogueManager : MonoBehaviour
 
     public void summonBox()
     {
-        dialogueBox.transform.position = dialogueBox.transform.position + new Vector3(0, 4, 0);
+        dialogueBox.transform.position = dialogueBox.transform.position + new Vector3(0, 9, 0);
     }
 
     private void EndDialogue()
