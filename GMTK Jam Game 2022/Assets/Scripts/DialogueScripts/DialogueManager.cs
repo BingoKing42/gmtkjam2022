@@ -75,6 +75,7 @@ public class DialogueManager : MonoBehaviour
         } else
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            FindObjectOfType<AudioManager>().Play("Pencil");
         }
     }
 }
