@@ -172,12 +172,6 @@ public class BattleSystem : MonoBehaviour
         {
             playerStatus.text = "+" + heal + " Health";
         }
-
-        if (effects.Contains("Triple"))
-        {
-            state = BattleState.ROLLING;
-            StartCoroutine(RollTheDice());
-        }
         
         //changes enemy HP 
         enemyHUD.SetHP(enemyUnitInfo.currentHP);
@@ -195,9 +189,19 @@ public class BattleSystem : MonoBehaviour
             //end battle
             state = BattleState.WON;
             EndBattle();
-        } else
+        } 
+        else
         {
-            StartCoroutine(EnemyTurn());
+            if (effects.Contains("Triple"))
+                {
+                state = BattleState.ROLLING;
+                StartCoroutine(RollTheDice());
+                }
+            else
+                {
+                StartCoroutine(EnemyTurn());
+                }
+
         }
 
     }
