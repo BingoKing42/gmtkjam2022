@@ -50,6 +50,8 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
 
     private bool diceSpin = false;
+    private bool doubleDwagonDamage = false;
+    private int elementNum = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -158,8 +160,59 @@ public class BattleSystem : MonoBehaviour
         AnimationManager.PlayerAttackAnimation();
 
         //INCLUDE function to return the three dice to their original spots
-        ResetDice();
+        dieSlot1Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
+        dieSlot2Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
+        dieSlot3Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
 
+        Debug.Log(elementNum);
+        switch (elementNum)
+        {
+            case 0:
+                break;
+            case 1:
+                if (dieSlot1Script.slottedDie.GetComponent<DragDrop>().dieMax != 4 && dieSlot2Script.slottedDie.GetComponent<DragDrop>().dieMax != 4 && dieSlot3Script.slottedDie.GetComponent<DragDrop>().dieMax != 4)
+                {
+                    doubleDwagonDamage = true;
+                }
+                break;
+            case 2:
+                if (dieSlot1Script.slottedDie.GetComponent<DragDrop>().dieMax != 6 && dieSlot2Script.slottedDie.GetComponent<DragDrop>().dieMax != 6 && dieSlot3Script.slottedDie.GetComponent<DragDrop>().dieMax != 6)
+                {
+                    doubleDwagonDamage = true;
+                }
+                break;
+            case 3:
+                if (dieSlot1Script.slottedDie.GetComponent<DragDrop>().dieMax != 8 && dieSlot2Script.slottedDie.GetComponent<DragDrop>().dieMax != 8 && dieSlot3Script.slottedDie.GetComponent<DragDrop>().dieMax != 8)
+                {
+                    doubleDwagonDamage = true;
+                }
+                break;
+            case 4:
+                if (dieSlot1Script.slottedDie.GetComponent<DragDrop>().dieMax != 10 && dieSlot2Script.slottedDie.GetComponent<DragDrop>().dieMax != 10 && dieSlot3Script.slottedDie.GetComponent<DragDrop>().dieMax != 10)
+                {
+                    doubleDwagonDamage = true;
+                }
+                break;
+            case 5:
+                if (dieSlot1Script.slottedDie.GetComponent<DragDrop>().dieMax != 12 && dieSlot2Script.slottedDie.GetComponent<DragDrop>().dieMax != 12 && dieSlot3Script.slottedDie.GetComponent<DragDrop>().dieMax != 12)
+                {
+                    doubleDwagonDamage = true;
+                }
+                break;
+            default:
+                break;
+        }
+
+        dieSlot1Script.slottedDie = null;
+        dieSlot2Script.slottedDie = null;
+        dieSlot3Script.slottedDie = null;
+
+        dieSlot1Script.isEmpty = true;
+        dieSlot2Script.isEmpty = true;
+        dieSlot3Script.isEmpty = true;
+        
+        ResetDice();
+        
         bool isDead = false;
         //deal damage and heal
         if (dmg > 0)
@@ -249,12 +302,37 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(2f);
 
         int dwagonDamage = Random.Range(1, 7);
+
+        if (doubleDwagonDamage)
+        {
+            comboNotification.text = "Ouch! Double Damage!";
+            dwagonDamage *= 2;
+            doubleDwagonDamage = false;
+            yield return new WaitForSeconds(2f);
+            comboNotification.text = "";
+        }
+
         bool isDead = playerUnitInfo.TakeDamage(dwagonDamage);
 
         playerHUD.SetHP(playerUnitInfo.currentHP);
+    
+        int tempElementNum = 0;
 
-        AnimationManager.EnemyAttackAnimation();
+        if (Random.Range(0, 2) == 0)
+        {
+            tempElementNum = Random.Range(1, 6);
+        }
+        else
+        {
+            tempElementNum = 0;
+        }
+
+        AnimationManager.EnemyAttackAnimation(tempElementNum, elementNum);
+
+        elementNum = tempElementNum;
+
         playerStatus.text = "-" + dwagonDamage + " Health";
+
         yield return new WaitForSeconds(1f);
         playerStatus.text = "";
 
