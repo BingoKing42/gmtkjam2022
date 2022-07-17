@@ -73,11 +73,11 @@ public class BattleSystem : MonoBehaviour
     IEnumerator SetupBattle()
     {
         playerUnitInfo = playerPrefab.GetComponent<UnitInfo>();
-        enemyUnitInfo = playerPrefab.GetComponent<UnitInfo>();
+        enemyUnitInfo = enemyPrefab.GetComponent<UnitInfo>();
 
         diceManagerScript = diceManager.GetComponent<DiceManager>();
 
-        comboNotification.text = "";
+        comboNotification.text = "Defeat the Dwagon to win!";
         enemyStatus.text = "";
         playerStatus.text = "";
 
@@ -91,6 +91,7 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
+        comboNotification.text = "";
         state = BattleState.ROLLING;
         StartCoroutine(RollTheDice());
     }
@@ -150,6 +151,7 @@ public class BattleSystem : MonoBehaviour
     //function to deal damage and do effects
     IEnumerator PlayerAttack()
     {
+        comboNotification.text = "Your turn!";
         int dmg;
         int heal;
         string effects;
@@ -291,9 +293,11 @@ public class BattleSystem : MonoBehaviour
     //enemy does flat damage, changes player HP, checks if game is over
     IEnumerator EnemyTurn()
     {
+        comboNotification.text = "Dwagons Attack!";
+
         yield return new WaitForSeconds(2f);
 
-        int dwagonDamage = Random.Range(1, 7);
+        int dwagonDamage = Random.Range(5, 21);
 
         if (doubleDwagonDamage)
         {
@@ -301,8 +305,9 @@ public class BattleSystem : MonoBehaviour
             dwagonDamage *= 2;
             doubleDwagonDamage = false;
             yield return new WaitForSeconds(2f);
-            comboNotification.text = "";
         }
+
+        comboNotification.text = "";
 
         bool isDead = playerUnitInfo.TakeDamage(dwagonDamage);
 

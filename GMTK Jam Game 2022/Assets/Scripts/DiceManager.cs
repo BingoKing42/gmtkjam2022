@@ -67,42 +67,42 @@ public class DiceManager : MonoBehaviour
 
         if (num1 + 1 == num2 && num2 + 1 == num3)
         {
-            effects_text += "\nStraight";
+            effects_text += "Straight Skates";
             damage_num = num1+num2+num3;
         }
 
         if (num1 == num2 && num2 == num3)
         {
-            effects_text = "Triple";
+            effects_text = "Triple Dribble";
             //Triples stun the enemy
         }
         else if (num1 == num2 || num2 == num3 || num1 == num3)
         {
-            effects_text = "Double";
+            effects_text = "Double Trouble";
             damage_num *= 2;
         }
 
         if (num1 % 2 == 0 && num2 % 2 == 0 && num3 % 2 == 0)
         {
-            effects_text += "\nEvens";
+            effects_text += "\nEven Stevens";
             damage_num += 4;
         }
         else if (num1 % 2 == 1 && num2 % 2 == 1 && num3 % 2 == 1)
         {
-            effects_text += "\nOdds";
+            effects_text += "\nBob's Odd Toe";
             heal_num += 4;
         }
 
         if (num1 + num2 == num3)
         {
-            effects_text += "\nSummation";
+            effects_text += "\nSummation Vacation";
             heal_num += 2;
             damage_num += 2;
         }
 
         if (num1 == num1max && num2 == num2max && num3 == num3max)
         {
-            effects_text += "\nMaximums";
+            effects_text += "\nAnalytical Critical";
             heal_num += 10;
         }
 

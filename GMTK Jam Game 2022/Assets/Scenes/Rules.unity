@@ -484,35 +484,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Rules:
-
-    - On your turn choose three dice to cast a spell
-
-    - Deal
-    damage equal to the average of the dice rolls, but special combinations will
-    have added effects
-
-    Even Stevens: +4 damage
-
-    Bob''s Odd Toe: Heal 4 health
-
-    Double
-    Trouble: Doulbe your damage
-
-    Triple Dribble: Stun the dwagon
-
-    Straight
-    Skates: Add the dice together instead of taking the average
-
-    Summation Vacation:
-    Heal 2 health and deal 2 extra damage
-
-    Analytical Critical: Heal 10 health
-
-
-    -
-    BEWARE! The dwagon''s eyes will light up the color of his next attack. Make sure
-    to include the same color die in your next spell, or else take DOUBLE DAMAGE'
+  m_text: "Rules:\n- On your turn choose three dice to cast a spell\n- Deal damage
+    equal to the average of the dice rolls, but special combinations will have added
+    effects\nEven Stevens (All even numbers): +4 damage\nBob's Odd Toe (All odd numbers):
+    Heal 4 health\nDouble Trouble (Two of a kind): Double your damage\nTriple Dribble
+    (Three of a kind): Stun the dwagon for one turn\nStraight Skates (Sequential
+    order): Add the dice together instead of taking the average\nSummation Vacation
+    (x + y = z): Heal 2 health and deal 2 extra damage\nAnalytical Critical (Max
+    value on all 3 dice): Heal 10 health\n\n- BEWARE! The dwagon's eyes will light
+    up the color of his next attack. Make sure to include the same color die in your
+    next spell, or else take DOUBLE DAMAGE \n(except for red, which is when he is
+    just chilling)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b5335b374e53784cb464471e263f1e2, type: 2}
   m_sharedMaterial: {fileID: -4582133789194559865, guid: 7b5335b374e53784cb464471e263f1e2, type: 2}
@@ -868,6 +850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit

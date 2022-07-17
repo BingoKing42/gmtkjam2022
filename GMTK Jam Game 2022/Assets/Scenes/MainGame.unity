@@ -3087,10 +3087,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2022 Even Stevens  (4, 2, 8)\n\u2022 Bob's Odd Toe (1, 1, 7)\n\u2022
-    Summation Vacation (2, 3, 5)\n\u2022 Straight Skates (4, 5, 6)\n\u2022Analytical
-    Critical (10, 12, 20)\n\u2022Double Trouble (7, 7, 10)\n\u2022Triple Dribble
-    (3,3,3)"
+  m_text: "\u2022 Even Stevens  (4, 2, 8) -> +4 dmg \n\u2022 Bob's Odd Toe (1, 1,
+    7)   -> +4 heal\n\u2022 Summation Vaca. (2, 3, 5) -> +2 d/h\n\u2022 Straight
+    Skates (4, 5, 6) -> dmg = sum\n\u2022Analytical Crit. (10, 12, 20) -> +10 heal\n\u2022Double
+    Trouble (7, 7, 10) -> x2 dmg\n\u2022Triple Dribble (3,3,3) -> stun enemy"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7b5335b374e53784cb464471e263f1e2, type: 2}
   m_sharedMaterial: {fileID: -4582133789194559865, guid: 7b5335b374e53784cb464471e263f1e2, type: 2}
@@ -3117,8 +3117,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3569,7 +3569,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 119, y: 97.7}
+  m_AnchoredPosition: {x: 119, y: 139.1}
   m_SizeDelta: {x: 222.94, y: 220.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1641344234
@@ -5011,6 +5011,14 @@ PrefabInstance:
     - target: {fileID: 9066557190885778195, guid: f15dafc1db5f27b479aa65dbb2ad67cb, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066557190885778205, guid: f15dafc1db5f27b479aa65dbb2ad67cb, type: 3}
+      propertyPath: maxHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 9066557190885778205, guid: f15dafc1db5f27b479aa65dbb2ad67cb, type: 3}
+      propertyPath: currentHP
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f15dafc1db5f27b479aa65dbb2ad67cb, type: 3}
