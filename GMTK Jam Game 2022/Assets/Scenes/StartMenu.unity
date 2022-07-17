@@ -296,7 +296,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 7e4bb9efe42238749a82ab11c944b079, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -817,6 +817,16 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Pencil
     clip: {fileID: 8300000, guid: 7548cc721e6c7124480aa471cba98a0e, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Spell
+    clip: {fileID: 8300000, guid: 715e67710480f4148b8e0b27e8accb92, type: 3}
+    volume: 1
+    pitch: 0.8
+    source: {fileID: 0}
+  - name: DragonAttack
+    clip: {fileID: 8300000, guid: e19d1af0768e0be4d8565fb04d11e41a, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}

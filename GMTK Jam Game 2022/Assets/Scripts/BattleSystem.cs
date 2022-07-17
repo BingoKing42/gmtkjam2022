@@ -231,6 +231,7 @@ public class BattleSystem : MonoBehaviour
         //if all slots filled, calcualte damage and effects
         if (!dieSlot1Script.isEmpty && !dieSlot2Script.isEmpty && !dieSlot3Script.isEmpty)
         {
+            FindObjectOfType<AudioManager>().Play("Spell");
             timerScript.stopTimer = true;
             Debug.Log("Button Worked!");
             state = BattleState.ENEMYTURN;

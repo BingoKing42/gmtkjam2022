@@ -2604,6 +2604,11 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     source: {fileID: 0}
+  - name: Spell
+    clip: {fileID: 8300000, guid: 715e67710480f4148b8e0b27e8accb92, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &1038942918
 Transform:
   m_ObjectHideFlags: 0
