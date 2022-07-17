@@ -85,25 +85,25 @@ public class DiceManager : MonoBehaviour
         if (num1 % 2 == 0 && num2 % 2 == 0 && num3 % 2 == 0)
         {
             effects_text += "\nEven Stevens";
-            damage_num += 4;
+            damage_num += 5;
         }
         else if (num1 % 2 == 1 && num2 % 2 == 1 && num3 % 2 == 1)
         {
             effects_text += "\nBob's Odd Toe";
-            heal_num += 4;
+            heal_num += 5;
         }
 
         if (num1 + num2 == num3)
         {
             effects_text += "\nSummation Vacation";
-            heal_num += 2;
-            damage_num += 2;
+            heal_num += 3;
+            damage_num += 3;
         }
 
         if (num1 == num1max && num2 == num2max && num3 == num3max)
         {
             effects_text += "\nAnalytical Critical";
-            heal_num += 10;
+            heal_num += 15;
         }
 
         
