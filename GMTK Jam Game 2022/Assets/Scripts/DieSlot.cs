@@ -11,9 +11,9 @@ public class DieSlot : MonoBehaviour, IDropHandler
 
    public void OnDrop(PointerEventData eventData)
    {
-        Debug.Log("OnDrop");
         if (eventData.pointerDrag != null && isEmpty)
         {
+            Debug.Log(eventData.pointerDrag.name + " was dropped on " + gameObject.name);
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
             slottedDie = eventData.pointerDrag.gameObject;
             slottedDie.GetComponent<DragDrop>().slotted = true;
