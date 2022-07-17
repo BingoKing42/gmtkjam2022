@@ -14,6 +14,8 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
 
+    public bool gameEnd;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +69,12 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (gameEnd)
+        {
+            Application.Quit();
+        } else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }

@@ -117,8 +117,9 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SkipTurn()
     {
-        comboNotification.text = "Oh no, your spell fizzled away\nBetter be faster next time!";
+        comboNotification.text = "Your spell fizzled away\nBe faster next time!";
         yield return new WaitForSeconds(2f);
+        comboNotification.text = "";
         StartCoroutine(EnemyTurn());
     }
 

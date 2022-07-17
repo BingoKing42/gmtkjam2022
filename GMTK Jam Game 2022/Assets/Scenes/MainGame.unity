@@ -4272,7 +4272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c2b6d85fc24d9744bb688fb7c83a1b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimeValue: 20
+  maxTimeValue: 15
   currentTimeValue: 0
   timerSlider: {fileID: 1812801217}
   timerText: {fileID: 210672114}
