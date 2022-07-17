@@ -6,40 +6,52 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    /*
-    //public Slider timerSlider;
-    public float gameTime;
+    public float maxTimeValue;
+
+    public float currentTimeValue;
+    public Slider timerSlider;
     public TextMeshProUGUI timerText;
 
-    public bool stopTimer;
+    public bool stopTimer = true;
 
-    public void BeginTimer()
+    public void startTimer()
     {
-        Debug.Log("Timer Started");
+        Debug.Log("timer started");
+        timerSlider.maxValue = maxTimeValue;
+        timerSlider.value = maxTimeValue;
+        currentTimeValue = maxTimeValue;
         stopTimer = false;
-        timerSlider.maxValue = gameTime;
-        timerSlider.value = gameTime;
+    }
 
-        while (!stopTimer)
+    void Update()
+    {
+        if (!stopTimer)
         {
-            float time = gameTime - Time.time;
-
-            int minutes = Mathf.FloorToInt(time / 60);
-            int seconds = Mathf.FloorToInt(time - minutes * 60f);
-
-            string textTime = string.Format("{0:0}:{1:00}", minutes, seconds);
-
-            if (time <= 0)
+            if (currentTimeValue > 0)
             {
+                currentTimeValue -= Time.deltaTime;
+            } else
+            {
+                currentTimeValue = 0;
                 stopTimer = true;
             }
 
-            if (stopTimer == false)
-            {
-                timerText.text = textTime;
-                timerSlider.value = time;
-            }
+            DisplayTime(currentTimeValue);
         }
     }
-    */
+
+    void DisplayTime(float timeToDisplay)
+    {
+        if (timeToDisplay < 0)
+        {
+            timeToDisplay = 0;
+        }
+
+        float minutes = Mathf.FloorToInt(timeToDisplay / 60);
+        float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+
+        timerText.text = string.Format("{0:0}:{1:00}", minutes, seconds);
+        timerSlider.value = timeToDisplay;
+    }
 }
+

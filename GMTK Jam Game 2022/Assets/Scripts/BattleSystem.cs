@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public enum BattleState { START, ROLLING, PLAYERTURN, ENEMYTURN, WON, LOST }
@@ -17,9 +18,8 @@ public class BattleSystem : MonoBehaviour
 
     public AnimationManager AnimationManager;
 
-    /*
     public Slider timer;
-    Timer timerScript;*/
+    Timer timerScript;
 
     public GameObject d4_text;
     public GameObject d6_text;
@@ -57,6 +57,7 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         state = BattleState.START;
+        timerScript = timer.GetComponent<Timer>();
 
         //set dice text to their highest values
         d4_text.GetComponent<TextMeshProUGUI>().text = "4";
@@ -80,8 +81,6 @@ public class BattleSystem : MonoBehaviour
         enemyStatus.text = "";
         playerStatus.text = "";
 
-        //timerScript = timer.GetComponent<Timer>();
-
         dieSlot1Script = dieSlot1.GetComponent<DieSlot>();
         dieSlot2Script = dieSlot2.GetComponent<DieSlot>();
         dieSlot3Script = dieSlot3.GetComponent<DieSlot>();
@@ -98,7 +97,6 @@ public class BattleSystem : MonoBehaviour
 
     void Update()
     {
-
         //start dice cycle up phase
         if (diceSpin == true)
         {
@@ -109,6 +107,19 @@ public class BattleSystem : MonoBehaviour
             d12_text.GetComponent<TextMeshProUGUI>().text = Random.Range(1, 13).ToString();
             d20_text.GetComponent<TextMeshProUGUI>().text = Random.Range(1, 21).ToString();
         }
+
+        if (state == BattleState.PLAYERTURN && timerScript.currentTimeValue <= 0)
+        {
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(SkipTurn());
+        }
+    }
+
+    IEnumerator SkipTurn()
+    {
+        comboNotification.text = "Oh no, your spell fizzled away\nBetter be faster next time!";
+        yield return new WaitForSeconds(2f);
+        StartCoroutine(EnemyTurn());
     }
 
     IEnumerator RollTheDice()
@@ -199,7 +210,9 @@ public class BattleSystem : MonoBehaviour
         dieSlot1Script.isEmpty = true;
         dieSlot2Script.isEmpty = true;
         dieSlot3Script.isEmpty = true;
-
+        
+        ResetDice();
+        
         bool isDead = false;
         //deal damage and heal
         if (dmg > 0)
@@ -245,25 +258,8 @@ public class BattleSystem : MonoBehaviour
     void PlayerTurn()
     {
         Debug.Log("player turn started"); 
-        //timerScript.BeginTimer();
 
-        /*
-        while (timerScript.gameTime > 0)
-        {
-            if (dieSlot1Script.isEmpty || dieSlot2Script.isEmpty || dieSlot3Script.isEmpty)
-                spellButton.enabled = false;
-        } 
-
-        if (timerScript.gameTime == 0)
-        {
-            //revert dice back to their spaces
-            //message to say turn was lost
-            
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurn());
-        }*/
-
-
+        timerScript.startTimer();
     }
 
     public void OnSpellButton()
@@ -278,14 +274,27 @@ public class BattleSystem : MonoBehaviour
         //if all slots filled, calcualte damage and effects
         if (!dieSlot1Script.isEmpty && !dieSlot2Script.isEmpty && !dieSlot3Script.isEmpty)
         {
-            //timerScript.stopTimer = true;
+            timerScript.stopTimer = true;
             Debug.Log("Button Worked!");
             state = BattleState.ENEMYTURN;
             StartCoroutine(PlayerAttack());
         }
     }
 
-    
+    private void ResetDice()
+    {
+        dieSlot1Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
+        dieSlot2Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
+        dieSlot3Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
+
+        dieSlot1Script.slottedDie = null;
+        dieSlot2Script.slottedDie = null;
+        dieSlot3Script.slottedDie = null;
+
+        dieSlot1Script.isEmpty = true;
+        dieSlot2Script.isEmpty = true;
+        dieSlot3Script.isEmpty = true;
+    }
 
     //enemy does flat damage, changes player HP, checks if game is over
     IEnumerator EnemyTurn()
@@ -322,7 +331,10 @@ public class BattleSystem : MonoBehaviour
 
         elementNum = tempElementNum;
 
+        playerStatus.text = "-" + dwagonDamage + " Health";
+
         yield return new WaitForSeconds(1f);
+        playerStatus.text = "";
 
         if(isDead)
         {
@@ -338,7 +350,14 @@ public class BattleSystem : MonoBehaviour
     //gives final message when battle is over, should transition to a final scene
     void EndBattle()
     {
-        
+        if (state == BattleState.LOST)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        } else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        }
+
     }
 
 }
