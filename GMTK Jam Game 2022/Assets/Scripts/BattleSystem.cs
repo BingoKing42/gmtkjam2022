@@ -133,7 +133,8 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("Die values: " + dieValues[0] + " " + dieValues[1] + " " + dieValues[2]);
 
         diceSpin = true;
-        yield return new WaitForSeconds(3f);
+        FindObjectOfType<AudioManager>().Play("DiceRolling");
+        yield return new WaitForSeconds(2.55f);
         diceSpin = false;
 
         d4_text.GetComponent<TextMeshProUGUI>().text = dieValues[0].ToString();
@@ -173,6 +174,7 @@ public class BattleSystem : MonoBehaviour
         }
         if (heal > 0)
         {
+            playerUnitInfo.Heal(heal);
             playerStatus.text = "+" + heal + " Health";
         }
         
@@ -324,6 +326,7 @@ public class BattleSystem : MonoBehaviour
             tempElementNum = 0;
         }
 
+        FindObjectOfType<AudioManager>().Play("DragonAttack");
         AnimationManager.EnemyAttackAnimation(tempElementNum, elementNum);
 
         elementNum = tempElementNum;
