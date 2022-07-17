@@ -465,6 +465,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 210672112}
   m_CullTransparentMesh: 1
+--- !u!1 &217396494
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 217396496}
+  - component: {fileID: 217396495}
+  m_Layer: 0
+  m_Name: AnimationManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &217396495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217396494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ab82635752b6e489816da193290a7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSprite: {fileID: 1210751493}
+  oldPlayerSprite: {fileID: 21300000, guid: 5a06e06334baaf5418a75be476f2739c, type: 3}
+  newPlayerSprite: {fileID: 21300000, guid: 94de84beb764a27449fb169e4e43bbb4, type: 3}
+  enemySprite: {fileID: 2136783267}
+  oldEnemySprite: {fileID: 21300000, guid: 53b8108704cfcef4688e686749a44bd2, type: 3}
+  newEnemySprite: {fileID: 21300000, guid: 01c063284d2cb1c4bb2ae60ca15c062a, type: 3}
+--- !u!4 &217396496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 217396494}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1245685, y: 1.3963492, z: 388.66742}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &226018539 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4053501302255181125, guid: 9ad9275b82682d643a34d2e256bb19fd, type: 3}
@@ -2608,6 +2658,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4053501301332933885, guid: 9ad9275b82682d643a34d2e256bb19fd, type: 3}
   m_PrefabInstance: {fileID: 1191874745}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1210751493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 444489435953067213, guid: c46369b316d4a204dbddd80804615728, type: 3}
+  m_PrefabInstance: {fileID: 444489435627972680}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1306994931
 GameObject:
   m_ObjectHideFlags: 0
@@ -4524,6 +4579,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 1671778781}
   enemyPrefab: {fileID: 132456214}
   diceManager: {fileID: 380299738}
+  AnimationManager: {fileID: 217396495}
   d4_text: {fileID: 441184326}
   d6_text: {fileID: 1737314051}
   d8_text: {fileID: 226018539}
@@ -4579,6 +4635,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2136783267 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9066557189155452117, guid: f15dafc1db5f27b479aa65dbb2ad67cb, type: 3}
+  m_PrefabInstance: {fileID: 9066557190934346757}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &444489435627972680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4643,6 +4704,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 9066557189155452119, guid: f15dafc1db5f27b479aa65dbb2ad67cb, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 53b8108704cfcef4688e686749a44bd2, type: 3}
     - target: {fileID: 9066557190885778194, guid: f15dafc1db5f27b479aa65dbb2ad67cb, type: 3}
       propertyPath: m_RootOrder
       value: 7
