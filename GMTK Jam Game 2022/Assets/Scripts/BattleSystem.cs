@@ -15,6 +15,8 @@ public class BattleSystem : MonoBehaviour
     public GameObject diceManager;
     DiceManager diceManagerScript;
 
+    public AnimationManager AnimationManager;
+
     /*
     public Slider timer;
     Timer timerScript;*/
@@ -46,6 +48,8 @@ public class BattleSystem : MonoBehaviour
     public BattleHUDScript enemyHUD;
 
     public BattleState state;
+
+    private bool diceSpin = false;
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +94,21 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(RollTheDice());
     }
 
+    void Update()
+    {
+
+        //start dice cycle up phase
+        if (diceSpin == true)
+        {
+            d4_text.GetComponent<TextMeshProUGUI>().text = Random.Range(1, 5).ToString();
+            d6_text.GetComponent<TextMeshProUGUI>().text = Random.Range(1, 7).ToString();
+            d8_text.GetComponent<TextMeshProUGUI>().text = Random.Range(1, 9).ToString();
+            d10_text.GetComponent<TextMeshProUGUI>().text = Random.Range(1, 11).ToString();
+            d12_text.GetComponent<TextMeshProUGUI>().text = Random.Range(1, 13).ToString();
+            d20_text.GetComponent<TextMeshProUGUI>().text = Random.Range(1, 21).ToString();
+        }
+    }
+
     IEnumerator RollTheDice()
     {
         //rolls dice and determines numbers on each face
@@ -98,15 +117,16 @@ public class BattleSystem : MonoBehaviour
 
         Debug.Log("Die values: " + dieValues[0] + " " + dieValues[1] + " " + dieValues[2]);
 
+        diceSpin = true;
+        yield return new WaitForSeconds(3f);
+        diceSpin = false;
+
         d4_text.GetComponent<TextMeshProUGUI>().text = dieValues[0].ToString();
         d6_text.GetComponent<TextMeshProUGUI>().text = dieValues[1].ToString();
         d8_text.GetComponent<TextMeshProUGUI>().text = dieValues[2].ToString();
         d10_text.GetComponent<TextMeshProUGUI>().text = dieValues[3].ToString();
         d12_text.GetComponent<TextMeshProUGUI>().text = dieValues[4].ToString();
         d20_text.GetComponent<TextMeshProUGUI>().text = dieValues[5].ToString();
-
-        //do dice animation, just text cycling through numbers
-        yield return new WaitForSeconds(2f);
 
         state = BattleState.PLAYERTURN;
         Debug.Log("finished rolling dice!");
@@ -123,6 +143,8 @@ public class BattleSystem : MonoBehaviour
         diceManagerScript.ScorePicks(dieSlot1Script.slottedDie, dieSlot2Script.slottedDie, dieSlot3Script.slottedDie, out dmg, out heal, out effects);
 
         comboNotification.text = effects;
+
+        AnimationManager.PlayerAttackAnimation();
 
         //INCLUDE function to return the three dice to their original spots
         dieSlot1Script.slottedDie.GetComponent<DragDrop>().ResetPosition();
@@ -229,6 +251,8 @@ public class BattleSystem : MonoBehaviour
         bool isDead = playerUnitInfo.TakeDamage(dwagonDamage);
 
         playerHUD.SetHP(playerUnitInfo.currentHP);
+
+        AnimationManager.EnemyAttackAnimation();
 
         yield return new WaitForSeconds(1f);
 
