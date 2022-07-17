@@ -65,6 +65,12 @@ public class DiceManager : MonoBehaviour
         heal_num = 0;
         effects_text = "";
 
+        if (num1 + 1 == num2 && num2 + 1 == num3)
+        {
+            effects_text += "\nStraight";
+            damage_num = num1+num2+num3;
+        }
+
         if (num1 == num2 && num2 == num3)
         {
             effects_text = "Triple";
@@ -87,22 +93,17 @@ public class DiceManager : MonoBehaviour
             heal_num += 4;
         }
 
-        if (num1 + 1 == num2 && num2 + 1 == num3)
-        {
-            effects_text += "\nStraight";
-            damage_num = num1+num2+num3;
-        }
-
         if (num1 + num2 == num3)
         {
             effects_text += "\nSummation";
-
+            heal_num += 2;
+            damage_num += 2;
         }
 
         if (num1 == num1max && num2 == num2max && num3 == num3max)
         {
             effects_text += "\nMaximums";
-            damage_num += 3;
+            heal_num += 10;
         }
 
         

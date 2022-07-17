@@ -456,8 +456,18 @@ MonoBehaviour:
   oldPlayerSprite: {fileID: 21300000, guid: 5a06e06334baaf5418a75be476f2739c, type: 3}
   newPlayerSprite: {fileID: 21300000, guid: 94de84beb764a27449fb169e4e43bbb4, type: 3}
   enemySprite: {fileID: 2136783267}
-  oldEnemySprite: {fileID: 21300000, guid: 53b8108704cfcef4688e686749a44bd2, type: 3}
-  newEnemySprite: {fileID: 21300000, guid: 01c063284d2cb1c4bb2ae60ca15c062a, type: 3}
+  passiveElement0: {fileID: 21300000, guid: 53b8108704cfcef4688e686749a44bd2, type: 3}
+  passiveElement1: {fileID: 21300000, guid: 85045544517da124fbc07c0344dd4273, type: 3}
+  passiveElement2: {fileID: 21300000, guid: d98d66d644cf3e04d8eddf245e8fa429, type: 3}
+  passiveElement3: {fileID: 21300000, guid: 8727ca4d441d55744934e1e411edcf29, type: 3}
+  passiveElement4: {fileID: 21300000, guid: 1f91889112157f44e83122f687472c97, type: 3}
+  passiveElement5: {fileID: 21300000, guid: 7ee3554cbe2b38647a0befa78c1fc43b, type: 3}
+  attackingElement0: {fileID: 21300000, guid: 01c063284d2cb1c4bb2ae60ca15c062a, type: 3}
+  attackingElement1: {fileID: 21300000, guid: 9234b68bd8ca8f84a92af5633c60a505, type: 3}
+  attackingElement2: {fileID: 21300000, guid: 2de6190f8bb306140bc6061c2e0dae7a, type: 3}
+  attackingElement3: {fileID: 21300000, guid: 83983b65d5012294f8d3dfacb3103724, type: 3}
+  attackingElement4: {fileID: 21300000, guid: 37ad5f88eacc7bd4788ada29238e1a7e, type: 3}
+  attackingElement5: {fileID: 21300000, guid: 7f5c1659f6f76b44abe40180723070e0, type: 3}
 --- !u!4 &217396496
 Transform:
   m_ObjectHideFlags: 0
@@ -4901,6 +4911,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 444489434044414359, guid: c46369b316d4a204dbddd80804615728, type: 3}
+      propertyPath: maxHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 444489434044414359, guid: c46369b316d4a204dbddd80804615728, type: 3}
+      propertyPath: currentHP
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 444489435953067214, guid: c46369b316d4a204dbddd80804615728, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.24840063
@@ -4911,7 +4929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 444489435953067214, guid: c46369b316d4a204dbddd80804615728, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.6842
+      value: 11.02
       objectReference: {fileID: 0}
     - target: {fileID: 444489435953067214, guid: c46369b316d4a204dbddd80804615728, type: 3}
       propertyPath: m_LocalPosition.y
