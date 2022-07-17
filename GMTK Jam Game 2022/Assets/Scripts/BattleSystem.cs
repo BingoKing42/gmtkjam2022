@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public enum BattleState { START, ROLLING, PLAYERTURN, ENEMYTURN, WON, LOST }
@@ -271,7 +272,14 @@ public class BattleSystem : MonoBehaviour
     //gives final message when battle is over, should transition to a final scene
     void EndBattle()
     {
-        
+        if (state == BattleState.LOST)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        } else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+        }
+
     }
 
 }
